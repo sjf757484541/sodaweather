@@ -1,5 +1,6 @@
 package com.soda.sodaweather;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.soda.sodaweather.gson.Forecast;
 import com.soda.sodaweather.gson.Weather;
+import com.soda.sodaweather.service.AutoUpdateService;
 import com.soda.sodaweather.util.HttpUtil;
 import com.soda.sodaweather.util.Utility;
 
@@ -201,6 +203,9 @@ public class WeatherActivity extends AppCompatActivity {
             carWashText.setText(carWash);
             sportText.setText(sport);
             weatherLayout.setVisibility(View.VISIBLE);
+            // 开启后台更新服务
+            Intent intent = new Intent(this, AutoUpdateService.class);
+            startService(intent);
         }
     }
 
